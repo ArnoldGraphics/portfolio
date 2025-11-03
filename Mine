@@ -1,0 +1,164 @@
+// Arnold_Sunguti Luxury Portfolio - Single React component
+// -------------------------------------------------------
+// How to use:
+// 1) This is a single-file React component (default export). It's styled with Tailwind utility classes
+//    (the preview environment supports Tailwind). If you deploy with Vite/Create React App, install Tailwind
+//    and Framer Motion: `npm install framer-motion`
+// 2) Replace the `PROJECTS` array with your real projects. Each project has: title, year, client, heroImage,
+//    problem, process (array of steps), and outcome.
+// 3) Deploy: recommended hosts: Vercel (easy), Netlify, or GitHub Pages (requires build step).
+// 4) If you want a plain HTML/CSS version instead, tell me and I will export it.
+
+import React from "react";
+import { motion } from "framer-motion";
+
+const PROJECTS = [
+  {
+    id: "velore",
+    title: "VELORE — Automotive Identity",
+    year: 2025,
+    client: "VELORE (concept)",
+    heroImage: "https://via.placeholder.com/1200x700?text=VELORE+Hero",
+    problem: "A premium electric motorcycle label needed a visual identity that conveyed precision, speed, and quiet luxury.",
+    process: [
+      "Discovery: brand audit and target-audience interviews.",
+      "Creative Direction: moodboards mixing matte black, graphite, and brass highlights.",
+      "Design Development: geometric logotype and moody 3D emblem.",
+      "Motion: short animated reveal for hero use on the website and product launch."],
+    outcome: "A focused visual system that elevated perceived value — used in campaign imagery and launch materials."
+  },
+  {
+    id: "soundsphere",
+    title: "SoundSphere — Audio Brand Refresh",
+    year: 2024,
+    client: "SoundSphere",
+    heroImage: "https://via.placeholder.com/1200x700?text=SoundSphere+Hero",
+    problem: "An audio-tech startup’s visuals felt generic and lacked the premium warmth their flagship speaker deserved.",
+    process: [
+      "Brand audit and competitor mapping.",
+      "Typography & material direction — introducing textured dark gradients and serif pairing.",
+      "Iconography and motion system for product UI and marketing."],
+    outcome: "A cohesive luxury-facing brand identity that improved pitch success rate and product resonance with premium retailers."
+  }
+];
+
+export default function Portfolio() {
+  return (
+    <div className="min-h-screen bg-black text-gray-100 antialiased">
+      {/* NAV */}
+      <header className="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-gray-800 to-gray-700 flex items-center justify-center text-gold-400 font-serif text-xl">
+            AS
+          </div>
+          <div>
+            <h1 className="text-xl font-semibold">Arnold Sunguti</h1>
+            <p className="text-sm text-gray-400">Luxury Brand & Motion Designer</p>
+          </div>
+        </div>
+        <nav>
+          <a href="#work" className="text-sm mr-6 hover:underline">Work</a>
+          <a href="#approach" className="text-sm mr-6 hover:underline">Process</a>
+          <a href="#contact" className="text-sm hover:underline">Contact</a>
+        </nav>
+      </header>
+
+      {/* HERO */}
+      <main className="max-w-6xl mx-auto px-6">
+        <section className="grid md:grid-cols-2 gap-12 items-center py-12">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-serif leading-tight">Designing Distinction — Visual identity for refined brands.</h2>
+            <p className="mt-6 text-gray-400 max-w-xl">I craft visual systems, motion, and 3D marks that elevate perception and command space. Clients: automotive, fashion, hospitality, and premium tech.</p>
+            <div className="mt-8 flex gap-4">
+              <a href="#work" className="px-6 py-3 border border-gray-600 rounded text-sm">View Work</a>
+              <a href="#contact" className="px-6 py-3 bg-gray-900 border border-gray-700 rounded text-sm">Request Proposal</a>
+            </div>
+          </div>
+          <div>
+            <div className="aspect-video bg-gray-900 rounded overflow-hidden flex items-center justify-center">
+              <img src="https://via.placeholder.com/900x520?text=Hero+Showcase" alt="hero" className="w-full h-full object-cover"/>
+            </div>
+          </div>
+        </section>
+
+        {/* WORK / PROJECTS */}
+        <section id="work" className="py-12">
+          <h3 className="text-3xl font-serif">Selected Work</h3>
+          <p className="mt-2 text-gray-400 max-w-2xl">Each case study follows a clear path: Problem → Process → Outcome. Replace these entries with your real projects and assets.</p>
+
+          <div className="mt-8 space-y-12">
+            {PROJECTS.map((p, i) => (
+              <motion.article key={p.id} initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{delay: i*0.15}} className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <img src={p.heroImage} alt={p.title} className="w-full h-80 object-cover rounded"/>
+                  <div className="mt-4 text-gray-400 text-sm">{p.client} • {p.year}</div>
+                  <h4 className="mt-2 text-2xl font-serif">{p.title}</h4>
+                </div>
+
+                <div className="prose prose-invert max-w-none">
+                  <h5 className="text-lg font-semibold">Problem</h5>
+                  <p className="text-gray-300">{p.problem}</p>
+
+                  <h5 className="mt-4 text-lg font-semibold">Process</h5>
+                  <ol className="list-decimal ml-6 mt-2 text-gray-300">
+                    {p.process.map((step, idx) => (
+                      <li key={idx} className="mt-2">{step}</li>
+                    ))}
+                  </ol>
+
+                  <h5 className="mt-4 text-lg font-semibold">Outcome</h5>
+                  <p className="text-gray-300">{p.outcome}</p>
+
+                  <div className="mt-6">
+                    <a href="#contact" className="inline-block px-5 py-3 border border-gray-600 rounded">Discuss a similar project</a>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        {/* APPROACH */}
+        <section id="approach" className="py-12 border-t border-gray-800">
+          <h3 className="text-3xl font-serif">Approach</h3>
+          <div className="mt-6 grid md:grid-cols-3 gap-6">
+            <div className="bg-gray-900 p-6 rounded">
+              <h6 className="font-semibold">Discovery</h6>
+              <p className="mt-2 text-gray-400 text-sm">Research, brand audit, and understanding the market signal your brand must send.</p>
+            </div>
+            <div className="bg-gray-900 p-6 rounded">
+              <h6 className="font-semibold">Creative Direction</h6>
+              <p className="mt-2 text-gray-400 text-sm">Moodboards, material direction, and typographic systems that breathe authority.</p>
+            </div>
+            <div className="bg-gray-900 p-6 rounded">
+              <h6 className="font-semibold">Execution</h6>
+              <p className="mt-2 text-gray-400 text-sm">Brand assets, motion, and 3D marks crafted for premium contexts.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section id="contact" className="py-12 border-t border-gray-800">
+          <h3 className="text-3xl font-serif">Contact</h3>
+          <p className="mt-2 text-gray-400">For collaborations, proposals, or a private visual audit, reach out:</p>
+          <div className="mt-6 grid md:grid-cols-2 gap-6">
+            <div className="bg-gray-900 p-6 rounded">
+              <h6 className="font-semibold">Work Inquiries</h6>
+              <p className="mt-2 text-gray-400 text-sm">Email: arnoldsunguti66@gmail.com</p>
+              <p className="mt-1 text-gray-400 text-sm">Instagram: @mdomagraphics</p>
+            </div>
+            <div className="bg-gray-900 p-6 rounded">
+              <h6 className="font-semibold">Availability</h6>
+              <p className="mt-2 text-gray-400 text-sm">Open for select projects. Preferred engagements: 6–12 week brand identity retainer.</p>
+              <p className="mt-2 text-gray-400 text-sm">Starting investment: $3,500+</p>
+            </div>
+          </div>
+        </section>
+
+        <footer className="py-12 text-center text-gray-500">
+          © {new Date().getFullYear()} Arnold Sunguti — Designed with restraint.
+        </footer>
+      </main>
+    </div>
+  )
+}
